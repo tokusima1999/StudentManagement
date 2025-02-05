@@ -20,6 +20,6 @@ public class StudentManagementApplication {
 
   @GetMapping("/StudentsCoursesList")
   public List<StudentsCourses> getStudentsCoursesList() {
-    return repository.GetAllStudentsCourses();
+    return repository.getAllStudentsCourses();
   }
 }
