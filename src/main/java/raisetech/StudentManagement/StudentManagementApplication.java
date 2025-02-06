@@ -6,6 +6,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import raisetech.StudentManagement.data.Student;
+import raisetech.StudentManagement.data.StudentsCourses;
+import raisetech.StudentManagement.repository.StudentRepository;
 
 @SpringBootApplication
 @RestController
@@ -18,8 +21,6 @@ public class StudentManagementApplication {
     SpringApplication.run(StudentManagementApplication.class, args);
   }
 
-  @GetMapping("/StudentsCoursesList")
-  public List<StudentsCourses> getStudentsCoursesList() {
-    return repository.getAllStudentsCourses();
-  }
+
+
 }
