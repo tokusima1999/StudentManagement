@@ -35,6 +35,8 @@ bin/
 /nbdist/
 /.nb-gradle/
 
+.idea/inspectionProfiles/Project_Default.xml
+
 ### VS Code ###
 .vscode/
 
