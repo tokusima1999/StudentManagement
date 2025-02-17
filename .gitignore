@@ -9,6 +9,7 @@ build/
 .idea/jarRepositories.xml
 .idea/compiler.xml
 .idea/libraries/
+.idea/inspectionProfiles/Project_Default.xml
 *.iws
 *.iml
 *.ipr
@@ -35,7 +36,6 @@ bin/
 /nbdist/
 /.nb-gradle/
 
-.idea/inspectionProfiles/Project_Default.xml
 
 ### VS Code ###
 .vscode/
