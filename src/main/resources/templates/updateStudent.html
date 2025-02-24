@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>受講生登録</title>
+  <title>受講生詳細情報</title>
 </head>
 <body>
-<h1>受講生登録</h1>
-<form th:action="@{/registerStudent}" th:object="${studentDetail}" method="post">
+<h1>受講生詳細</h1>
+<form th:action="@{/studentInformation/{id}}" th:object="${studentDetail}" method="post">
+  <div>
+    <input type="hidden" th:field="*{id}" />
+  </div>
+
+
   <div>
     <label for="name">名前:</label>
     <input type="text" id="name" th:field="*{student.name}" required />
@@ -15,8 +20,8 @@
     <input type="text" id="hurigana" th:field="*{student.hurigana}" required/>
   </div>
   <div>
-  <label for="nickname">ニックネーム:</label>
-  <input type="text" id="nickname" th:field="*{student.nickname}" required/>
+    <label for="nickname">ニックネーム:</label>
+    <input type="text" id="nickname" th:field="*{student.nickname}" required/>
   </div>
   <div>
     <label for="address">メールアドレス:</label>
@@ -30,21 +35,22 @@
     <label for="years">年齢:</label>
     <input type="text" id="years" th:field="*{student.years}" required/>
   </div>
-  <div>
-  <label for="gender">性別（男性、女性、その他）:</label>
-  <input type="text" id="gender" th:field="*{student.gender}" required/>
-  </div>
+  <select id="gender" th:field="*{student.gender}">
+    <option value="男性">男性</option>
+    <option value="女性">女性</option>
+    <option value="その他">その他</option>
+  </select>
   <div>
     <label for="remark">備考欄（あれば書くように）:</label>
-    <input type="text" id="remark" th:ield="*{student.remark}" />
+    <input type="text" id="remark" th:field="*{student.remark}" />
   </div>
   <div th:each="course, stat:*{studentsCourses}">
     <label for="courses" th:for="*{studentsCourses[__${stat.index}__].courses}">受講コース名:</label>
     <input type="text" id="courses" th:id="studentCourse.__${stat.index}__.courseName"th:field="*{studentsCourses[__${stat.index}__].courses}" />
   </div>
   <div>
-    <button type="submit">登録</button>
+    <button type="submit">更新</button>
   </div>
-      </form>
+</form>
 </body>
 </html>

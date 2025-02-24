@@ -14,5 +14,7 @@ public class StudentDetail {
   private Student student;
   private List<StudentsCourses> studentsCourses;
 
-
+  public Long getId() {
+    return student != null ? student.getId() : null;
+  }
 }

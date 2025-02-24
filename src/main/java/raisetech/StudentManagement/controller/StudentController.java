@@ -1,6 +1,7 @@
 package raisetech.StudentManagement.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.apache.ibatis.annotations.Insert;
@@ -11,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import raisetech.StudentManagement.controller.converter.StudentConverter;
@@ -39,20 +41,22 @@ public class StudentController {
     model.addAttribute("studentList", converter.convertStudentDetails(students, studentsCourses));
     return "studentList";
   }
-
-
   private List<StudentsCourses> getStudentsCourses() {
     return service.searchStudentsCoursesList();
   }
 
-  @GetMapping("/StudentsCoursesList")
-  public List<StudentsCourses> getStudentsCoursesList() {
-    return service.searchStudentsCoursesList();
+  @GetMapping("/studentInformation/{id}")
+  public String getStudentInformation(@PathVariable long id, Model model){
+StudentDetail studentDetail=service.searchStudent(id);
+model.addAttribute("studentDetail",studentDetail);
+return "updateStudent";
   }
 
   @GetMapping("/newStudent")
   public String newStudent(Model model) {
-    model.addAttribute("studentDetail", new StudentDetail());
+    StudentDetail studentDetail = new StudentDetail();
+    studentDetail.setStudentsCourses(Arrays.asList(new StudentsCourses()));
+    model.addAttribute("studentDetail", studentDetail);
     return "registerStudent";
   }
 
@@ -64,4 +68,13 @@ public class StudentController {
     service.registerStudent(studentDetail);
     return "redirect:/studentList";
   }
+@PostMapping("/updateStudent")
+  public String updateStudent(@ModelAttribute StudentDetail studentDetail, BindingResult result){
+  if (result.hasErrors()){
+    return "updateStudent";
+  }
+    service.updateStudent(studentDetail);
+    return "redirect:/studentList";
+}
+
 }
