@@ -31,10 +31,9 @@ public interface StudentRepository {
   void registerStudent(Student student);
 
 
-  @Insert("INSERT INTO students_courses(student_id,courses,start,end)"+
+  @Insert("INSERT INTO students_courses(student_id,courses,start,end)" +
       "VALUES(#{studentID},#{courses},#{start},#{end})")
   void registerStudentsCourses(StudentsCourses studentsCourses);
-
 
 
   @Select("SELECT * FROM students WHERE id = #{id}")

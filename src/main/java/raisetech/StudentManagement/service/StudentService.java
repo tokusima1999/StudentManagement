@@ -27,23 +27,25 @@ public class StudentService {
     return repository.search();
   }
 
-  public StudentDetail searchStudent(long id){
-    Student student= repository.searchStudent(id);
-    List<StudentsCourses> studentsCourses= repository.searchStudentsCourses(student.getId());
-    StudentDetail studentDetail=new StudentDetail();
+  public StudentDetail searchStudent(long id) {
+    Student student = repository.searchStudent(id);
+    List<StudentsCourses> studentsCourses = repository.searchStudentsCourses(student.getId());
+    StudentDetail studentDetail = new StudentDetail();
     studentDetail.setStudent(student);
     studentDetail.setStudentsCourses(studentsCourses);
     return studentDetail;
   }
+
   public List<StudentsCourses> searchStudentsCoursesList() {
     return repository.searchStudentsCoursesList();
   }
 
 
- public Student getStudentById(Long id){
+  public Student getStudentById(Long id) {
     return repository.findById(id);
- }
-  public List<StudentsCourses> getCoursesByStudentID(Long id){
+  }
+
+  public List<StudentsCourses> getCoursesByStudentID(Long id) {
     return repository.findCoursesByStudentId(id);
   }
 
