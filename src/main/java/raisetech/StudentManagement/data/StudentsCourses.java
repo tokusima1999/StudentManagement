@@ -10,7 +10,7 @@ import lombok.Setter;
 public class StudentsCourses {
 
   private String courseID;
-  private String studentID;
+  private Long studentId;
   private String courses;
   private String start;
   private String end;
