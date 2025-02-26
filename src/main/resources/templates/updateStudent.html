@@ -5,9 +5,11 @@
 </head>
 <body>
 <h1>受講生詳細</h1>
-<form th:action="@{/studentInformation/{id}}" th:object="${studentDetail}" method="post">
+<form th:action="@{/updateStudent}" th:object="${studentDetail}" method="post">
   <div>
-    <input type="hidden" th:field="*{id}"/>
+    <label for="id">ID:</label>
+
+    <input type="hidden" id="id" th:field="*{student.id}"/>
   </div>
 
 
@@ -45,6 +47,12 @@
     <input type="text" id="remark" th:field="*{student.remark}"/>
   </div>
   <div th:each="course, stat:*{studentsCourses}">
+    <input type="hidden" th:field="*{studentsCourses[__${stat.index}__].studentId}"/>
+
+    <label for="courseID"
+           th:for="*{studentsCourses[__${stat.index}__].courseID}"></label>
+    <input type="hidden" id="courseID" th:id="studentCourse.__${stat.index}__.courseID"
+           th:field="*{studentsCourses[__${stat.index}__].courseID}"/>
     <label for="courses"
            th:for="*{studentsCourses[__${stat.index}__].courses}">受講コース名:</label>
     <input type="text" id="courses" th:id="studentCourse.__${stat.index}__.courseName"
@@ -52,7 +60,13 @@
   </div>
   <div>
     <button type="submit">更新</button>
+    <button type="button" onclick="cancelUpdate()">キャンセル</button>
   </div>
+  <script>
+    function cancelUpdate() {
+      window.location.href = "/studentList";
+    }
+  </script>
 </form>
 </body>
 </html>
