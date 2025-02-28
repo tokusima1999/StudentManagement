@@ -22,7 +22,7 @@ public interface StudentRepository {
   @Select("SELECT * FROM students_courses")
   List<StudentsCourses> searchStudentsCoursesList();
 
-  @Select("SELECT * FROM students_courses WHERE student_id=#{studentId}")
+  @Select("SELECT * FROM students_courses WHERE studentID=#{studentId}")
   List<StudentsCourses> searchStudentsCourses(Long studentID);
 
   @Insert("INSERT INTO students(name,hurigana,nickname,address,area,years,gender,remark,isDeleted) "
@@ -31,7 +31,7 @@ public interface StudentRepository {
   void registerStudent(Student student);
 
 
-  @Insert("INSERT INTO students_courses(student_id,courses,start,end)" +
+  @Insert("INSERT INTO students_courses(studentID,courses,start,end)" +
       "VALUES(#{studentID},#{courses},#{start},#{end})")
   void registerStudentsCourses(StudentsCourses studentsCourses);
 
@@ -39,7 +39,7 @@ public interface StudentRepository {
   @Select("SELECT * FROM students WHERE id = #{id}")
   Student findById(Long id);
 
-  @Select("SELECT * FROM students_courses WHERE student_id = #{id}")
+  @Select("SELECT * FROM students_courses WHERE studentID = #{id}")
   List<StudentsCourses> findCoursesByStudentId(Long id);
 
   @Update("UPDATE students SET name = #{name}, hurigana = #{hurigana}, nickname = #{nickname}, "
@@ -48,6 +48,6 @@ public interface StudentRepository {
   void updateStudent(Student student);
 
   @Update("UPDATE students_courses SET courses = #{courses} "
-      + "WHERE studentID = #{studentId}")
+      + " WHERE studentID = #{studentId}")
   void updateStudentsCourses(StudentsCourses studentsCourses);
 }

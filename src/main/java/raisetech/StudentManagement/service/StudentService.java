@@ -62,10 +62,18 @@ public class StudentService {
 
   @Transactional
   public void updateStudent(StudentDetail studentDetail) {
+    System.out.println("Updating student: " + studentDetail.getStudent().getId());
     repository.updateStudent(studentDetail.getStudent());
+
     for (StudentsCourses studentsCourses : studentDetail.getStudentsCourses()) {
+      System.out.println(
+          "Updating course for student ID: " + studentsCourses.getStudentId() + ", Course: "
+              + studentsCourses.getCourses());
       repository.updateStudentsCourses(studentsCourses);
     }
   }
+
 }
+
+
 
