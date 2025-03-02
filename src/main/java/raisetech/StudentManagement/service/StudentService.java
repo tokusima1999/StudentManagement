@@ -62,7 +62,6 @@ public class StudentService {
 
   @Transactional
   public void updateStudent(StudentDetail studentDetail) {
-    System.out.println("Updating student: " + studentDetail.getStudent().getId());
     repository.updateStudent(studentDetail.getStudent());
 
     for (StudentsCourses studentsCourses : studentDetail.getStudentsCourses()) {
@@ -74,6 +73,3 @@ public class StudentService {
   }
 
 }
-
-
-
