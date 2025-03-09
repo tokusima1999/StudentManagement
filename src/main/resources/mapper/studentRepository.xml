@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="raisetech.StudentManagement.repository.StudentRepository">
+
+  <!--受講生の全件検索を実行します。-->
+  <select id="search" resultType="raisetech.StudentManagement.data.Student">
+    SELECT * FROM students
+  </select>
+
+  <!--受講生検索を実行します。-->
+  <select id="searchStudent" resultType="raisetech.StudentManagement.data.Student">
+    SELECT * FROM students WHERE id=#{id}
+  </select>
+
+  <!--受講生のコース情報の全件検索を実行します。-->
+  <select id="searchStudentCourseList" resultType="raisetech.StudentManagement.data.StudentCourse">
+    SELECT * FROM students_courses
+  </select>
+
+  <!--受講生IDに紐づく受講生のコース情報の検索を実行します。-->
+  <select id="searchStudentCourse" resultType="raisetech.StudentManagement.data.StudentCourse">
+    SELECT * FROM students_courses WHERE studentID=#{studentId}
+  </select>
+
+  <!--受講生の新規登録を実行します。 受講生IDは1,2,3,4と自動的に設定されるようになっています。-->
+  <insert id="registerStudent" useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO students(name,hurigana,nickname,address,area,years,gender,remark,isDeleted)
+    VALUES(#{name}, #{hurigana}, #{nickname}, #{address}, #{area}, #{years}, #{gender},
+    #{remark},false)
+  </insert>
+
+  <!-- 受講生コース情報の新規登録を実行します。 受講生IDに紐づくようにstudentIDを設定しています。 コースIDはA1,B1,C1と自動的に挿入されるようにMySQLで設定済みです。-->
+  <insert id="registerStudentCourse">
+    INSERT INTO students_courses(studentId,courses,start,end)
+    VALUES(#{studentId},#{courses},#{start},#{end})
+  </insert>
+
+  <!-- 受講生IDによる受講生検索を行い、該当受講生の更新処理を実行します。-->
+  <update id="updateStudent">
+    UPDATE students SET name = #{name}, hurigana = #{hurigana}, nickname = #{nickname},
+    address = #{address}, area = #{area}, years = #{years}, gender = #{gender},
+    remark = #{remark} WHERE id = #{id}
+  </update>
+
+  <!--受講生IDによるコース検索を実行し、該当コース情報の更新処理を実行します。-->
+  <update id="updateStudentCourse">
+    UPDATE students_courses SET courses = #{courses}
+    WHERE studentID = #{studentId}
+  </update>
+</mapper>
