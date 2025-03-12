@@ -1,24 +1,17 @@
 package raisetech.StudentManagement.controller;
 
 import jakarta.validation.Valid;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.ErrorResponse;
-import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
-import raisetech.StudentManagement.controller.converter.StudentConverter;
+import raisetech.StudentManagement.converter.StudentConverter;
 import raisetech.StudentManagement.domain.StudentDetail;
 import raisetech.StudentManagement.service.StudentService;
 
@@ -82,28 +75,5 @@ public class StudentController {
     service.updateStudent(studentDetail);
     return ResponseEntity.ok("更新処理が成功です。");
   }
-
-  /**
-   * エラー処理のコードです。
-   */
-  @RestControllerAdvice
-  public class GlobalExceptionHandler {
-
-    /**
-     * エラーメッセージを返せるようにしています。
-     *
-     * @param ex 　バリデーションエラー例外
-     * @return　エラーメッセージを含むレスポンス
-     */
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<Map<String, String>> handleValidationExceptions(
-        MethodArgumentNotValidException ex) {
-      Map<String, String> errors = new HashMap<>();
-      ex.getBindingResult().getFieldErrors().forEach(error -> {
-        errors.put(error.getField(), error.getDefaultMessage());
-      });
-
-      return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
-    }
-  }
 }
+

@@ -1,5 +1,6 @@
 package raisetech.StudentManagement.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -10,7 +11,6 @@ import org.springframework.validation.annotation.Validated;
 @Setter
 @Validated
 public class Student {
-
 
   private Long id;
   private String name;

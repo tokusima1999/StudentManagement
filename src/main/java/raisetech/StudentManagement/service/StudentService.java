@@ -5,10 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import raisetech.StudentManagement.controller.converter.StudentConverter;
+import raisetech.StudentManagement.converter.StudentConverter;
 import raisetech.StudentManagement.data.Student;
 import raisetech.StudentManagement.data.StudentCourse;
 import raisetech.StudentManagement.domain.StudentDetail;
+import raisetech.StudentManagement.dto.StudentResponseDTO;
+import raisetech.StudentManagement.exception.InvalidStudentIdException;
+import raisetech.StudentManagement.exception.StudentNotFoundException;
 import raisetech.StudentManagement.repository.StudentRepository;
 
 /**
@@ -24,6 +27,16 @@ public class StudentService {
   public StudentService(StudentRepository repository, StudentConverter converter) {
     this.repository = repository;
     this.converter = converter;
+  }
+
+  public StudentResponseDTO getStudentResponseDTO(Long id) {
+    Student student = repository.searchStudent(id);
+    List<StudentCourse> studentCourseList = repository.searchStudentCourseList();
+    StudentResponseDTO studentResponseDTO = new StudentResponseDTO();
+    studentResponseDTO.setStudent(student);
+    studentResponseDTO.setStudentCourseList(studentCourseList);
+    studentResponseDTO.getStudent().setId(null);
+    return studentResponseDTO;
   }
 
   /**
@@ -44,10 +57,20 @@ public class StudentService {
    * @return　受講生情報
    */
   public StudentDetail searchStudent(long id) {
+    if (id <= 0) {
+      throw new InvalidStudentIdException("受講生IDは1以上でお願いします。", "INVALID_STUDENT_ID");
+    }
     Student student = repository.searchStudent(id);
+
+    if (student == null) {
+      throw new StudentNotFoundException("受講生ID" + id + "は登録されていません。",
+          "STUDENT_NOT_FOUND");
+    }
     List<StudentCourse> studentsCourses = repository.searchStudentCourseList();
     return new StudentDetail(student, studentsCourses);
+
   }
+
 
   /**
    * 受講生の新規登録を実行します。 1、 受講生情報を登録します。 ２、 受講生が受講するコース情報（受講開始日を登録時の日付に、受講終了日を開始日の１年後に設定済み。）を登録します。

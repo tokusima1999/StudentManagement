@@ -1,5 +1,6 @@
 package raisetech.StudentManagement.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import java.util.List;
@@ -23,6 +24,7 @@ public class StudentDetail {
   private Student student;
   private List<StudentCourse> studentCourseList;
 
+  @JsonIgnore
   public Long getId() {
     return student != null ? student.getId() : null;
   }
