@@ -4,6 +4,7 @@
 
 <mapper namespace="raisetech.StudentManagement.repository.StudentRepository">
 
+  
   <!--受講生の全件検索を実行します。-->
   <select id="search" resultType="raisetech.StudentManagement.data.Student">
     SELECT * FROM students
