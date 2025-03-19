@@ -1,5 +1,7 @@
 package raisetech.StudentManagement.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +37,8 @@ public class StudentController {
    *
    * @return　受講生一覧
    */
+  @Operation(summary = "受講生一覧検索", description = "受講生情報を条件なしで全件取得をします。", responses = {
+      @ApiResponse(responseCode = "200", description = "受講生一覧")})
   @GetMapping("/studentList")
   public List<StudentDetail> getStudentList() {
     return service.searchStudentList();
@@ -46,6 +50,8 @@ public class StudentController {
    * @param id 　受講生ID
    * @return 該当する受講生情報
    */
+  @Operation(summary = "受講生検索", description = "受講生IDを基に検索を実行し、受講生情報を表示します。", responses = {
+      @ApiResponse(responseCode = "200", description = "検索したIDに該当する受講生情報")})
   @GetMapping("/student/{id}")
   public StudentDetail getStudent(@PathVariable Long id) {
     return service.searchStudent(id);
@@ -57,6 +63,8 @@ public class StudentController {
    * @param studentDetail 　受講生詳細
    * @return　登録された受講生情報
    */
+  @Operation(summary = "受講生新規登録", description = "受講生登録を行います。", responses = {
+      @ApiResponse(responseCode = "200", description = "登録された受講生情報")})
   @PostMapping("/registerStudent")
   public ResponseEntity<StudentDetail> registerStudent(@Valid
   @RequestBody StudentDetail studentDetail) {
@@ -70,6 +78,9 @@ public class StudentController {
    * @param studentDetail 　受講生詳細
    * @return　更新処理が成功です。
    */
+  @Operation(summary = "受講生情報を更新します。", description = "受講生IDは変更せずに、受講生情報を更新します。", responses = {
+      @ApiResponse(responseCode = "200", description = "更新処理が成功です。")
+  })
   @PutMapping("/updateStudent")
   public ResponseEntity<String> updateStudent(@RequestBody StudentDetail studentDetail) {
     service.updateStudent(studentDetail);

@@ -1,12 +1,14 @@
 package raisetech.StudentManagement.data;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.validation.annotation.Validated;
 
+@Schema(description = "受講生情報")
 @Getter
 @Setter
 @Validated
