@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.validation.annotation.Validated;
@@ -21,7 +23,7 @@ public class Student {
   private String nickname;
   private String address;
   private String area;
-  private int years;
+  int years;
   private String gender;
   private String remark;
   private Boolean isDeleted;

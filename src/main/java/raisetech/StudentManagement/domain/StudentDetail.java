@@ -6,6 +6,8 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import java.util.List;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,11 +21,12 @@ import raisetech.StudentManagement.data.StudentCourse;
 @NoArgsConstructor
 @AllArgsConstructor
 @Validated
+@Data
 public class StudentDetail {
 
   @Valid
   @NotNull(message = "情報が不足しています。再度入力してください。")
-  private Student student;
+  Student student;
   private List<StudentCourse> studentCourseList;
 
   @JsonIgnore
