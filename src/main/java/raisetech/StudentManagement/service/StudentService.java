@@ -29,15 +29,6 @@ public class StudentService {
     this.converter = converter;
   }
 
-  public StudentResponseDTO getStudentResponseDTO(Long id) {
-    Student student = repository.searchStudent(id);
-    List<StudentCourse> studentCourseList = repository.searchStudentCourseList();
-    StudentResponseDTO studentResponseDTO = new StudentResponseDTO();
-    studentResponseDTO.setStudent(student);
-    studentResponseDTO.setStudentCourseList(studentCourseList);
-    studentResponseDTO.getStudent().setId(null);
-    return studentResponseDTO;
-  }
 
   /**
    * 受講生一覧検索。 条件指定なしの全件検索を行います。
@@ -95,12 +86,12 @@ public class StudentService {
    * @param studentCourse 　初期化する受講コース情報
    * @param student       　受講生情報
    */
-  private void initStudentsCourse(StudentCourse studentCourse, Student student) {
+  public void initStudentsCourse(StudentCourse studentCourse, Student student) {
     LocalDateTime now = LocalDateTime.now();
     studentCourse.setStudentId(student.getId());
 
-    studentCourse.setStart(String.valueOf(now));
-    studentCourse.setEnd(String.valueOf(now.plusYears(1)));
+    studentCourse.setStart(now);
+    studentCourse.setEnd(now.plusYears(1));
   }
 
   /**
@@ -119,5 +110,4 @@ public class StudentService {
       repository.updateStudentCourse(studentCourse);
     }
   }
-
 }

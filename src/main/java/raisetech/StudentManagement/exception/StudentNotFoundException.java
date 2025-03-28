@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @Getter
 /**
+ *
  * アプリケーション全体で使用できる共通の例外クラスです。
  */
 @ResponseStatus(HttpStatus.NOT_FOUND)
