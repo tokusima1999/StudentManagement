@@ -64,14 +64,16 @@ class StudentServiceTest {
     Long id = 1L;
     Student student = new Student();
     student.setId(id);
-    StudentDetail studentDetail = new StudentDetail(student, new ArrayList<>());
+    StudentDetail expected = new StudentDetail(student, new ArrayList<>());
+    //挙動を明示的にして、分かりやすくした。
     when(repository.searchStudent(id)).thenReturn(student);
     when(repository.searchStudentCourseList()).thenReturn(new ArrayList<>());
-    sut.searchStudent(id);
+
+    StudentDetail actual = sut.searchStudent(id);
 
     verify(repository, times(1)).searchStudent(id);
     verify(repository, times(1)).searchStudentCourseList();
-    Assertions.assertEquals(studentDetail.getStudent().getId(), studentDetail.getStudent().getId());
+    Assertions.assertEquals(expected, actual);
   }
 
   @Test
