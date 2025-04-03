@@ -40,13 +40,13 @@ class StudentControllerTest {
   private Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 
   @Test
-  void 受講生一覧検索ができ空のリストが返ること() throws Exception {
+  void 受講生一覧検索ができること() throws Exception {
     mockMvc.perform(get("/studentList")).andExpect(status().isOk());
     verify(service, times(1)).searchStudentList();
   }
 
   @Test
-  void 受講生検索ができること_空のリストが返ること() throws Exception {
+  void 受講生検索ができること＿受講生情報が取得されること() throws Exception {
     Long id = 1L;
     Student student = new Student();
     student.setId(id);
