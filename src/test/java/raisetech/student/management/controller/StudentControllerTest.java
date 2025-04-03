@@ -121,7 +121,7 @@ class StudentControllerTest {
   }
 
   @Test
-  void 名前が2文字以下だと入力チェックエラーが出ること() {
+  void 名前が2文字以下だと入力チェックエラーが発生すること() {
     Student student = new Student();
     student.setName("あ");
     Set<ConstraintViolation<Student>> violations = validator.validate(student);
