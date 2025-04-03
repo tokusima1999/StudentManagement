@@ -40,13 +40,13 @@ class StudentControllerTest {
   private Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 
   @Test
-  void 受講生一覧検索ができること() throws Exception {
+  void 受講生一覧検索が成功すること() throws Exception {
     mockMvc.perform(get("/studentList")).andExpect(status().isOk());
     verify(service, times(1)).searchStudentList();
   }
 
   @Test
-  void 受講生検索ができること＿受講生情報が取得されること() throws Exception {
+  void 受講生検索が成功すること() throws Exception {
     Long id = 1L;
     Student student = new Student();
     student.setId(id);
@@ -55,7 +55,7 @@ class StudentControllerTest {
   }
 
   @Test
-  void 受講生の新規登録ができること_仮のデータが登録されること() throws Exception {
+  void 受講生の新規登録が成功すること_仮のデータが登録されること() throws Exception {
     Student student = new Student();
     StudentDetail studentDetail = new StudentDetail();
     studentDetail.setStudent(student);
@@ -84,7 +84,7 @@ class StudentControllerTest {
   }
 
   @Test
-  void 受講生情報の更新ができること_仮のデータが更新されること() throws Exception {
+  void 受講生情報の更新が成功すること_仮のデータが更新されること() throws Exception {
     Student student = new Student();
     StudentDetail studentDetail = new StudentDetail();
     studentDetail.setStudent(student);
