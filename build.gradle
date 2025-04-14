@@ -47,6 +47,8 @@ dependencies {
     testImplementation 'org.mockito:mockito-inline:5.2.0'  // inline mock を有効に
     testImplementation 'org.assertj:assertj-core:3.24.2'
 
+    testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.3'
+    testImplementation 'com.h2database:h2:2.2.224'
 }
 
 tasks.named('test') {
