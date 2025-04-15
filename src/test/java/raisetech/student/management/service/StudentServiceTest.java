@@ -3,21 +3,16 @@ package raisetech.student.management.service;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.when;
 
-import java.rmi.StubNotFoundException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.transaction.annotation.Transactional;
 import raisetech.StudentManagement.converter.StudentConverter;
@@ -129,6 +124,6 @@ class StudentServiceTest {
 
     Assertions.assertEquals(999L, studentCourse.getStudentId());
     Assertions.assertEquals(now, studentCourse.getStart());
-    Assertions.assertEquals(now.plusYears(1), studentCourse.getEnd());
+    Assertions.assertEquals(now.plusYears(1), studentCourse.getEndDate());
   }
 }

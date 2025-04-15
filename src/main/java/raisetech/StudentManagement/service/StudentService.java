@@ -9,7 +9,6 @@ import raisetech.StudentManagement.converter.StudentConverter;
 import raisetech.StudentManagement.data.Student;
 import raisetech.StudentManagement.data.StudentCourse;
 import raisetech.StudentManagement.domain.StudentDetail;
-import raisetech.StudentManagement.dto.StudentResponseDTO;
 import raisetech.StudentManagement.exception.InvalidStudentIdException;
 import raisetech.StudentManagement.exception.StudentNotFoundException;
 import raisetech.StudentManagement.repository.StudentRepository;
@@ -91,7 +90,7 @@ public class StudentService {
     studentCourse.setStudentId(student.getId());
 
     studentCourse.setStart(now);
-    studentCourse.setEnd(now.plusYears(1));
+    studentCourse.setEndDate(now.plusYears(1));
   }
 
   /**

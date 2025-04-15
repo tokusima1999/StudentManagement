@@ -1,9 +1,7 @@
 package raisetech.StudentManagement.data;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.time.LocalDateTime;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,5 +15,5 @@ public class StudentCourse {
   private Long studentId;
   private String courses;
   private LocalDateTime start;
-  private LocalDateTime end;
+  private LocalDateTime endDate;
 }
