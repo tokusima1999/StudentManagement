@@ -34,6 +34,9 @@ class StudentRepositoryTest {
   @Autowired
   private TestDatabaseInitializer initializer;
 
+  private String initialCourseId = "A";
+
+
   @Test
   void 受講生の全件検索が成功すること() {
     List<Student> actual = sut.search();
@@ -77,8 +80,6 @@ class StudentRepositoryTest {
     List<Student> actual = sut.search();
     assertThat(actual.size()).isEqualTo(4);
   }
-
-  private String initialCourseId = "A";
 
 
   @Test
