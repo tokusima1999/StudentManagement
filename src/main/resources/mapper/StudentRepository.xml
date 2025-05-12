@@ -27,22 +27,24 @@
 
   <!--受講生の新規登録を実行します。 受講生IDは1,2,3,4と自動的に設定されるようになっています。-->
   <insert id="registerStudent" useGeneratedKeys="true" keyProperty="id">
-    INSERT INTO students(name,hurigana,nickname,address,area,years,gender,remark,isDeleted)
+    INSERT INTO
+    students(name,hurigana,nickname,address,area,years,gender,remark,isDeleted,applicationStatus)
     VALUES(#{name}, #{hurigana}, #{nickname}, #{address}, #{area}, #{years}, #{gender},
-    #{remark},false)
+    #{remark},false,#{applicationStatus})
   </insert>
 
   <!-- 受講生コース情報の新規登録を実行します。 受講生IDに紐づくようにstudentIDを設定しています。 コースIDはA1,B1,C1と自動的に挿入されるようにMySQLで設定済みです。-->
   <insert id="registerStudentCourse">
-    INSERT INTO students_courses(course_id,student_id,courses,start, endDate)
-    VALUES(#{courseID},#{studentId},#{courses},#{start},#{endDate})
+    INSERT INTO students_courses(course_id,student_id,courses,start,
+    endDate,course_fee,payment_status)
+    VALUES(#{courseID},#{studentId},#{courses},#{start},#{endDate},#{course_fee},#{payment_status})
   </insert>
 
   <!-- 受講生IDによる受講生検索を行い、該当受講生の更新処理を実行します。-->
   <update id="updateStudent">
     UPDATE students SET name = #{name}, hurigana = #{hurigana}, nickname = #{nickname},
     address = #{address}, area = #{area}, years = #{years}, gender = #{gender},
-    remark = #{remark} WHERE id = #{id}
+    remark = #{remark},applicationStatus=#{applicationStatus} WHERE id = #{id}
   </update>
 
   <!--受講生IDによるコース検索を実行し、該当コース情報の更新処理を実行します。-->

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>受講生一覧</title>
+</head>
+<body>
+<h1>受講生一覧</h1>
+<table border="1">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>名前</th>
+    <th>ふりがな</th>
+    <th>ニックネーム</th>
+    <th> メールアドレス</th>
+    <th>居住地域</th>
+    <th>年齢</th>
+    <th>性別</th>
+    <th>備考欄</th>
+    <th>申し込み状況</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="studentDetail: ${studentList}">
+    <td th:text="${studentDetail.student.id}"></td>
+    <td th:text="${studentDetail.student.name}"></td>
+    <td th:text="${studentDetail.student.hurigana}"></td>
+    <td th:text="${studentDetail.student.nickname}"></td>
+    <td th:text="${studentDetail.student.address}"></td>
+    <td th:text="${studentDetail.student.area}"></td>
+    <td th:text="${studentDetail.student.years}"></td>
+    <td th:text="${studentDetail.student.gender}"></td>
+    <td th:text="${studentDetail.student.remark}"></td>
+    <td th:text="${studentDetail.student.applicationStatus}"></td>
+  </tr>
+  </tbody>
+</table>
+<button onclick="location.href='/home'">ホームへ</button>
+</body>
+</html>

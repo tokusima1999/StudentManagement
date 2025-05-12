@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmln:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:xmln="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>受講生新規登録</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}"/>
+  <style>
+    form{
+    margin: 0 auto;
+    width: 500px;
+    }
+    form div{
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+    form label{
+    display: inline-block;
+    width: 160px;
+    font-weight: bold;
+    text-align:right;
+    margin-right:10px;
+    }
+    form input,
+    form select{
+    width: 200px;
+    }
+  </style>
+</head>
+<body>
+<h1>新規登録フォーム</h1>
+<form th:action="@{/registerStudentView}" th:object="${studentRegisterForm}" method="post">
+  <div>
+    <label>名前:</label>
+    <input type="text" id="name" th:field="*{student.name}" required/>
+  </div>
+  <div>
+    <label>ふりがな:</label>
+    <input type="text" id="hurigana" th:field="*{student.hurigana}" required/>
+  </div>
+  <div>
+    <label>ニックネーム:</label>
+    <input type="text" id="nickname" th:field="*{student.nickname}" required/>
+  </div>
+  <div>
+    <label>メールアドレス:</label>
+    <input type="email" id="address" th:field="*{student.address}" required/>
+  </div>
+  <div>
+    <label>住所(市区町村まで):</label>
+    <input type="text" id="area" th:field="*{student.area}" required/>
+  </div>
+  <div>
+    <label>年齢(半角):</label>
+    <input type="number" id="years" th:field="*{student.years}" min="0" max="99" step="1" required/>
+  </div>
+  <div>
+    <label>性別:</label>
+    <select th:field="*{student.gender}" required>
+      <option value="男性">男性</option>
+      <option value="女性">女性</option>
+      <option value="その他">その他</option>
+    </select>
+  </div>
+  <div>
+    <label>受講コース名:</label>
+    <input type="text" id="courses" th:field="*{studentCourse.courses}" required/>
+  </div>
+  <div>
+    <label>受講料金:</label>
+    <div class="fee-input">
+      <input type="number" id="course_fee" th:field="*{studentCourse.course_fee}" step="1" required
+             style="width: 100px;"/>
+      <span style="margin-left: 5px">万円</span>
+    </div>
+  </div>
+  <div>
+    <label>備考欄:</label>
+    <input type="text" id="remark" th:field="*{student.remark}"/>
+  </div>
+  <div>
+    <label>申し込み状況:</label>
+    <select th:field="*{student.applicationStatus}">
+      <option value="仮申し込み">仮申し込み</option>
+      <option value="本申し込み">本申し込み</option>
+      <option value="受講中">受講中</option>
+      <option value="受講終了">受講終了</option>
+    </select>
+  </div>
+  <div>
+    <button type="submit">登録</button>
+  </div>
+  <div>
+    <button type="reset">リセット</button>
+  </div>
+</form>
+<button onclick="location.href='/home'">ホームへ</button>
+</body>
+</html>
