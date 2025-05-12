@@ -37,6 +37,8 @@ class StudentRepositoryTest {
 
   private String initialCourseId = "A";
 
+ 30th-kadai
+  main
   @Test
   void 受講生の全件検索が成功すること() {
     List<Student> actual = sut.search();
@@ -82,7 +84,8 @@ class StudentRepositoryTest {
     assertThat(actual.size()).isEqualTo(4);
   }
 
-
+ 30th-kadai
+  main
 
   @Test
   void コースIDが自動生成されること() {
