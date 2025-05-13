@@ -1,7 +1,6 @@
 package raisetech.StudentManagement.controller.view;
 
 import java.util.List;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -23,7 +22,6 @@ import raisetech.StudentManagement.service.StudentViewService;
 /**
  * 受講生の新規登録・検索・一覧表示を行うControllerです。
  */
-@AllArgsConstructor
 @Controller
 public class StudentViewController {
 
@@ -65,6 +63,8 @@ public class StudentViewController {
   @GetMapping("/registerStudentForm")
   public String registerStudentForm(Model model) {
     StudentRegisterForm studentRegisterForm = new StudentRegisterForm();
+    studentRegisterForm.setStudent(new StudentForm());
+    studentRegisterForm.setStudentCourse(new StudentCourseForm());
     model.addAttribute("studentRegisterForm", studentRegisterForm);
     return "registerStudentForm";
   }
@@ -89,8 +89,9 @@ public class StudentViewController {
   public String registerStudentView(@ModelAttribute StudentRegisterForm studentRegisterForm) {
     StudentForm studentForm = studentRegisterForm.getStudent();
     StudentCourseForm studentCourseForm = studentRegisterForm.getStudentCourse();
-    StudentDetail studentDetail = new StudentDetail(studentForm.getStudent(),
-        studentCourseForm.getStudentCourseList());
+    StudentDetail studentDetail = new StudentDetail();
+    studentDetail.setStudent(studentForm.getStudent());
+    studentDetail.setStudentCourseList(studentCourseForm.getStudentCourseList());
     viewService.registerStudentAndStudentCourse(studentDetail);
     return "redirect:/registerStudentView";
   }

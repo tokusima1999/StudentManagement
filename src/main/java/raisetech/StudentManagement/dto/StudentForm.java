@@ -48,7 +48,16 @@ public class StudentForm {
    * @return 反映された受講生情報
    */
   public Student getStudent() {
-    return Student.builder().name(this.name).hurigana(this.hurigana).nickname(this.nickname)
-        .address(this.address).area(this.area).years(this.years).gender(this.gender).remark(this.remark).applicationStatus(this.applicationStatus).build();
+    Student student = new Student();
+    student.setName(this.name);
+    student.setHurigana(this.hurigana);
+    student.setNickname(this.nickname);
+    student.setAddress(this.address);
+    student.setArea(this.area);
+    student.setYears(this.years);
+    student.setGender(this.gender);
+    student.setRemark(this.remark);
+    student.setApplicationStatus(this.applicationStatus);
+    return student;
   }
 }
