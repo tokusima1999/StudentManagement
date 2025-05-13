@@ -7,6 +7,8 @@ import jakarta.validation.constraints.Pattern;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import raisetech.StudentManagement.data.StudentCourse;
@@ -36,13 +38,9 @@ public class StudentCourseForm {
    * @return 受講生コース情報
    */
   public StudentCourse getStudentCourse() {
-    StudentCourse studentCourse = new StudentCourse();
-    studentCourse.setCourses(this.courses);
-    studentCourse.setStart(this.start);
-    studentCourse.setEndDate(this.endDate);
-    studentCourse.setCourse_fee(this.course_fee);
-    studentCourse.setPayment_status(this.payment_status);
-    return studentCourse;
+    return StudentCourse.builder().courses(this.courses).start(this.start)
+        .endDate(this.endDate).course_fee(this.course_fee).payment_status(this.payment_status)
+        .build();
   }
 
   /**
@@ -51,12 +49,8 @@ public class StudentCourseForm {
    * @return リスト形式の受講生コース情報
    */
   public List<StudentCourse> getStudentCourseList() {
-    StudentCourse studentCourse = new StudentCourse();
-    studentCourse.setCourses(this.courses);
-    studentCourse.setStart(this.start);
-    studentCourse.setEndDate(this.endDate);
-    studentCourse.setCourse_fee(this.course_fee);
-    studentCourse.setPayment_status(this.payment_status);
-    return List.of(studentCourse);
+    return List.of(
+        StudentCourse.builder().courses(this.courses).start(this.start).endDate(this.endDate)
+            .course_fee(this.course_fee).payment_status(this.payment_status).build());
   }
 }
