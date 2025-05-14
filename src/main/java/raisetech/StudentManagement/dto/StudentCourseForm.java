@@ -7,8 +7,6 @@ import jakarta.validation.constraints.Pattern;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import raisetech.StudentManagement.data.StudentCourse;
@@ -28,9 +26,9 @@ public class StudentCourseForm {
   private LocalDateTime endDate;
   @NotNull
   @Digits(integer = 7, fraction = 0)
-  private BigDecimal course_fee;
+  private BigDecimal courseFee;
   @Pattern(regexp = "[〇×]", message = "支払い状況は〇か×でお願い致します。")
-  private String payment_status;
+  private String paymentStatus;
 
   /**
    * 入力された情報から 受講生コース情報のインスタンスを生成します。
@@ -39,7 +37,7 @@ public class StudentCourseForm {
    */
   public StudentCourse getStudentCourse() {
     return StudentCourse.builder().courses(this.courses).start(this.start)
-        .endDate(this.endDate).course_fee(this.course_fee).payment_status(this.payment_status)
+        .endDate(this.endDate).courseFee(this.courseFee).paymentStatus(this.paymentStatus)
         .build();
   }
 
@@ -51,6 +49,6 @@ public class StudentCourseForm {
   public List<StudentCourse> getStudentCourseList() {
     return List.of(
         StudentCourse.builder().courses(this.courses).start(this.start).endDate(this.endDate)
-            .course_fee(this.course_fee).payment_status(this.payment_status).build());
+            .courseFee(this.courseFee).paymentStatus(this.paymentStatus).build());
   }
 }

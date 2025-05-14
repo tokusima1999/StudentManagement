@@ -37,7 +37,7 @@
   <insert id="registerStudentCourse">
     INSERT INTO students_courses(course_id,student_id,courses,start,
     endDate,course_fee,payment_status)
-    VALUES(#{courseID},#{studentId},#{courses},#{start},#{endDate},#{course_fee},#{payment_status})
+    VALUES(#{courseID},#{studentId},#{courses},#{start},#{endDate},#{courseFee},#{paymentStatus})
   </insert>
 
   <!-- 受講生IDによる受講生検索を行い、該当受講生の更新処理を実行します。-->

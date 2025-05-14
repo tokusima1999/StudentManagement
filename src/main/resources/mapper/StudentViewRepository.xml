@@ -26,8 +26,8 @@
       <result property="courses" column="courses"/>
       <result property="start" column="start"/>
       <result property="endDate" column="endDate"/>
-      <result property="course_fee" column="course_fee"/>
-      <result property="payment_status" column="payment_status"/>
+      <result property="courseFee" column="course_fee"/>
+      <result property="paymentStatus" column="payment_status"/>
     </collection>
   </resultMap>
   <!--受講生情報とコース情報をつなげます。-->
@@ -79,14 +79,14 @@
   <insert id="registerStudentCourseAutoCourseId">
     INSERT INTO students_courses(student_id,courses,start,
     endDate,course_fee,payment_status)
-    VALUES(#{studentId},#{courses},#{start},#{endDate},#{course_fee},#{payment_status})
+    VALUES(#{studentId},#{courses},#{start},#{endDate},#{courseFee},#{paymentStatus})
   </insert>
 
   <!--テスト用のコース情報の新規登録のコードです。コースIDは明示しています。-->
   <insert id="registerStudentCourseWithCourseId">
     INSERT INTO students_courses(course_id,student_id,courses,start,
     endDate,course_fee,payment_status)
-    VALUES(#{courseID},#{studentId},#{courses},#{start},#{endDate},#{course_fee},#{payment_status})
+    VALUES(#{courseID},#{studentId},#{courses},#{start},#{endDate},#{courseFee},#{paymentStatus})
   </insert>
   <!--受講生検索を行います。-->
   <select id="searchStudentCourse" resultType="raisetech.StudentManagement.data.StudentCourse">

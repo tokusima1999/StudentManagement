@@ -53,9 +53,9 @@ public class StudentViewService {
     StudentCourse studentCourse = studentDetail.getStudentCourseList().get(0);
     String applicationStatus = studentDetail.getStudent().getApplicationStatus();
     if ("仮申し込み".equals(applicationStatus)) {
-      studentCourse.setPayment_status("×");
+      studentCourse.setPaymentStatus("×");
     } else {
-      studentCourse.setPayment_status("〇");
+      studentCourse.setPaymentStatus("〇");
     }
     service.initStudentsCourse(studentCourse, student);
     repository.registerStudent(student);

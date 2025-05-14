@@ -1,7 +1,6 @@
 package raisetech.student.management.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -13,7 +12,6 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ContextConfiguration;
 import raisetech.StudentManagement.StudentManagementApplication;
-import raisetech.StudentManagement.data.Student;
 import raisetech.StudentManagement.data.StudentCourse;
 import raisetech.StudentManagement.domain.StudentDetail;
 import raisetech.StudentManagement.dto.SearchStudentForm;
@@ -78,8 +76,8 @@ class StudentViewRepositoryTest {
     studentCourse.setCourses("JAVAコース");
     studentCourse.setStart(LocalDateTime.now());
     studentCourse.setEndDate(LocalDateTime.now().plusYears(1));
-    studentCourse.setCourse_fee(BigDecimal.valueOf(50000));
-    studentCourse.setPayment_status("〇");
+    studentCourse.setCourseFee(BigDecimal.valueOf(50000));
+    studentCourse.setPaymentStatus("〇");
     int beforeSize = sut.searchStudentCourse(studentId).size();
     sut.registerStudentCourseWithCourseId(studentCourse);
     int afterSize = sut.searchStudentCourse(studentId).size();

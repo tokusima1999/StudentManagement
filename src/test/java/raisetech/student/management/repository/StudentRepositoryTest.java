@@ -5,14 +5,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.jdbc.Sql;
 import org.springframework.transaction.annotation.Transactional;
 import raisetech.StudentManagement.StudentManagementApplication;
 import raisetech.StudentManagement.data.Student;
@@ -37,8 +35,6 @@ class StudentRepositoryTest {
 
   private String initialCourseId = "A";
 
- 30th-kadai
-  main
   @Test
   void 受講生の全件検索が成功すること() {
     List<Student> actual = sut.search();
@@ -84,9 +80,6 @@ class StudentRepositoryTest {
     assertThat(actual.size()).isEqualTo(4);
   }
 
- 30th-kadai
-  main
-
   @Test
   void コースIDが自動生成されること() {
 
@@ -124,8 +117,8 @@ class StudentRepositoryTest {
     LocalDateTime endDate = LocalDateTime.of(2026, 3, 1, 0, 0);
     studentCourse.setStart(startDate);
     studentCourse.setEndDate(endDate);
-    studentCourse.setCourse_fee(BigDecimal.valueOf(200000));
-    studentCourse.setPayment_status("〇");
+    studentCourse.setCourseFee(BigDecimal.valueOf(200000));
+    studentCourse.setPaymentStatus("〇");
     int beforeSize = sut.searchStudentCourse(id).size();
     sut.registerStudentCourse(studentCourse);
     int afterSize = sut.searchStudentCourse(id).size();

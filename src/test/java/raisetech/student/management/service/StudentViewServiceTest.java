@@ -4,14 +4,12 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.internal.matchers.Equals;
 import org.mockito.junit.jupiter.MockitoExtension;
 import raisetech.StudentManagement.data.Student;
 import raisetech.StudentManagement.data.StudentCourse;
@@ -111,7 +109,7 @@ class StudentViewServiceTest {
     studentDetail.setStudent(student);
     studentDetail.setStudentCourseList(List.of(studentCourse));
     sut.registerStudentAndStudentCourse(studentDetail);
-    Assertions.assertEquals("×", studentCourse.getPayment_status());
+    Assertions.assertEquals("×", studentCourse.getPaymentStatus());
   }
 
   @Test
@@ -124,7 +122,7 @@ class StudentViewServiceTest {
     studentDetail.setStudent(student);
     studentDetail.setStudentCourseList(List.of(studentCourse));
     sut.registerStudentAndStudentCourse(studentDetail);
-    Assertions.assertEquals("〇", studentCourse.getPayment_status());
+    Assertions.assertEquals("〇", studentCourse.getPaymentStatus());
   }
 
   @Test
@@ -137,7 +135,7 @@ class StudentViewServiceTest {
     studentDetail.setStudent(student);
     studentDetail.setStudentCourseList(List.of(studentCourse));
     sut.registerStudentAndStudentCourse(studentDetail);
-    Assertions.assertEquals("〇", studentCourse.getPayment_status());
+    Assertions.assertEquals("〇", studentCourse.getPaymentStatus());
   }
 
   @Test
@@ -150,6 +148,6 @@ class StudentViewServiceTest {
     studentDetail.setStudent(student);
     studentDetail.setStudentCourseList(List.of(studentCourse));
     sut.registerStudentAndStudentCourse(studentDetail);
-    Assertions.assertEquals("〇", studentCourse.getPayment_status());
+    Assertions.assertEquals("〇", studentCourse.getPaymentStatus());
   }
 }
