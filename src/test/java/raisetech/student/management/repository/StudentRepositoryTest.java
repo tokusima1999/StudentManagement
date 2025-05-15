@@ -2,16 +2,15 @@ package raisetech.student.management.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.jdbc.Sql;
 import org.springframework.transaction.annotation.Transactional;
 import raisetech.StudentManagement.StudentManagementApplication;
 import raisetech.StudentManagement.data.Student;
@@ -35,7 +34,6 @@ class StudentRepositoryTest {
   private TestDatabaseInitializer initializer;
 
   private String initialCourseId = "A";
-
 
   @Test
   void 受講生の全件検索が成功すること() {
@@ -76,11 +74,11 @@ class StudentRepositoryTest {
     student.setGender("男");
     student.setRemark("特になし");
     student.setIsDeleted(false);
+    student.setApplicationStatus("仮申し込み");
     sut.registerStudent(student);
     List<Student> actual = sut.search();
     assertThat(actual.size()).isEqualTo(4);
   }
-
 
   @Test
   void コースIDが自動生成されること() {
@@ -119,6 +117,8 @@ class StudentRepositoryTest {
     LocalDateTime endDate = LocalDateTime.of(2026, 3, 1, 0, 0);
     studentCourse.setStart(startDate);
     studentCourse.setEndDate(endDate);
+    studentCourse.setCourseFee(BigDecimal.valueOf(200000));
+    studentCourse.setPaymentStatus("〇");
     int beforeSize = sut.searchStudentCourse(id).size();
     sut.registerStudentCourse(studentCourse);
     int afterSize = sut.searchStudentCourse(id).size();

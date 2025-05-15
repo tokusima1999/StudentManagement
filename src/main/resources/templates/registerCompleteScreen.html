@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns: xmlns:th="http://www.w3.org/1999/xhtml" th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>登録完了</title>
+  <style>
+    body{
+    text-align: center;
+    margin-top:50px;
+    font-family: sans-serif;
+    }
+    .message{
+    font-size: 25px;
+    }
+  </style>
+</head>
+<body>
+<div class="message">
+  登録が完了しました。
+</div>
+<br/>
+<a th:href="@{registerStudentForm}">
+  <button>新規登録画面に戻る</button>
+</a>
+</body>
+</html>

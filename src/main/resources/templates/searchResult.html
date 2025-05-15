@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>検索結果画面</title>
+</head>
+<body>
+<h1>検索結果一覧</h1>
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>名前</th>
+    <th>ふりがな</th>
+    <th>ニックネーム</th>
+    <th>アドレス</th>
+    <th>居住地域</th>
+    <th>年齢</th>
+    <th>性別</th>
+    <th>備考欄</th>
+    <th>受講コース名</th>
+    <th>開始日</th>
+    <th>終了日</th>
+    <th>受講料金(万円)</th>
+    <th>申し込み状況</th>
+    <th>入金状況</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="studentDetail:${studentList}">
+    <td th:text="${studentDetail.student.id}"></td>
+    <td th:text="${studentDetail.student.name}"></td>
+    <td th:text="${studentDetail.student.hurigana}"></td>
+    <td th:text="${studentDetail.student.nickname}"></td>
+    <td th:text="${studentDetail.student.address}"></td>
+    <td th:text="${studentDetail.student.area}"></td>
+    <td th:text="${studentDetail.student.years}"></td>
+    <td th:text="${studentDetail.student.gender}"></td>
+    <td th:text="${studentDetail.student.remark}"></td>
+    <td>
+      <ul>
+        <li th:each="course : ${studentDetail.studentCourseList}" th:text="${course.courses}"></li>
+      </ul>
+    </td>
+    <td>
+      <ul>
+        <li th:each="course : ${studentDetail.studentCourseList}" th:text="${course.start}"></li>
+      </ul>
+    </td>
+    <td>
+      <ul>
+        <li th:each="course : ${studentDetail.studentCourseList}" th:text="${course.endDate}"></li>
+      </ul>
+    </td>
+    <td>
+      <ul>
+        <li th:each="course : ${studentDetail.studentCourseList}"
+            th:text="${course.course_fee}"></li>
+      </ul>
+    </td>
+    <td th:text="${studentDetail.student.applicationStatus}"></td>
+    <td>
+      <ul>
+        <li th:each="course : ${studentDetail.studentCourseList}"
+            th:text="${course.payment_status}"></li>
+      </ul>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

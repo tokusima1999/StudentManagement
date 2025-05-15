@@ -15,19 +15,16 @@ import org.springframework.validation.annotation.Validated;
 import raisetech.StudentManagement.data.Student;
 import raisetech.StudentManagement.data.StudentCourse;
 
+@Data
 @Schema(description = "受講生詳細情報")
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Validated
-@Data
 public class StudentDetail {
 
   @Valid
   @NotNull(message = "情報が不足しています。再度入力してください。")
   Student student;
-  private List<StudentCourse> studentCourseList;
+  List<StudentCourse> studentCourseList;
 
   @JsonIgnore
   public Long getId() {
