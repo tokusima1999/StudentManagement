@@ -119,11 +119,16 @@ class StudentServiceTest {
     Student student = new Student();
     student.setId(id);
     StudentCourse studentCourse = new StudentCourse();
-    LocalDateTime now = LocalDateTime.now();
     sut.initStudentsCourse(studentCourse, student);
-
     Assertions.assertEquals(999L, studentCourse.getStudentId());
-    Assertions.assertEquals(now, studentCourse.getStart());
-    Assertions.assertEquals(now.plusYears(1), studentCourse.getEndDate());
+    LocalDateTime expectedStart = LocalDateTime.now().withNano(0);
+    LocalDateTime actualStart = studentCourse.getStart().withNano(0);
+
+    Assertions.assertEquals(expectedStart.toLocalDate(), actualStart.toLocalDate());
+    Assertions.assertEquals(expectedStart.getHour(), actualStart.getHour());
+    Assertions.assertEquals(expectedStart.getMinute(), actualStart.getMinute());
+    Assertions.assertEquals(expectedStart.getSecond(), actualStart.getSecond());
+    Assertions.assertEquals(actualStart.plusYears(1).withNano(0),
+        studentCourse.getEndDate().withNano(0));
   }
 }
