@@ -57,9 +57,9 @@ jobs:
             if  [ -f /etc/systemd/system/StudentManagement.service ]; then
                 echo "already exits Service File"
             else
-              cat <<EOL | sudo tee -a  /etc/systemd/system/StudentManagement.service
+              cat <<EOL | sudo tee -a /etc/systemd/system/StudentManagement.service
   [ Unit ]
-  Description = StudentManagement App
+  Description=StudentManagement App
   
   [Service]
   ExecStart = java -jar ${DEST_PATH}
